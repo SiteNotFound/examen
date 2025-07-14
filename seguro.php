@@ -36,27 +36,7 @@ class Seguro {
         return $this->coberturas;
     }
 
-    public function mostrarInfo(): string {
-        return '<br> Nombre: '. $this->nombre . '<br> Tipo seguro: '. $this->tipoSeguro->value . '<br> Valor cobertura: '. $this->valorCobertura . '<br> Precio: '. $this->precio . '<br> Coberturas: '. implode(',', $this->coberturas);
-    }
-    
-}
-
-function buscarSeguroMasCaro($seguros){
-    $masCaro = $seguros[0];
-    foreach ($seguros as $seguro){
-        if ($seguro->getPrecio() > $masCaro->getPrecio()){
-            $masCaro = $seguro;
-        }
-    }
-    return $masCaro;
-}
-
-function buscarTipoSeguro($seguros, TipoSeguro $tipoSeguroBuscado){
-    $resultado = [];
-    foreach($seguros as $seguro){
-        if($seguro->getTipoSeguro() == $tipoSeguroBuscado)
-        $resultado[] = $seguro;
-    }
-    return $resultado;
+    public function __tostring(): string {
+        return "Seguro: {$this->nombre}, Tipo: {$this->tipoSeguro->name}, Cobertura: {$this->valorCobertura}, Precio: {$this->precio}, Coberturas: " . implode(', ', $this->coberturas);
+    }    
 }
